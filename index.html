@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Project Manager</h1>
+            <p>Organize and track all your projects in one place</p>
+        </header>
+
+        <main>
+            <!-- Add Project Section -->
+            <section class="add-project-section">
+                <h2>Create New Project</h2>
+                <form id="projectForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectName">Project Name</label>
+                            <input type="text" id="projectName" placeholder="Enter project name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectPriority">Priority</label>
+                            <select id="projectPriority">
+                                <option value="Low">Low</option>
+                                <option value="Medium" selected>Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDesc">Description</label>
+                        <textarea id="projectDesc" placeholder="Enter project description" rows="3"></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectDate">Start Date</label>
+                            <input type="date" id="projectDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="projectDueDate">Due Date</label>
+                            <input type="date" id="projectDueDate">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="projectStatus">Status</label>
+                            <select id="projectStatus">
+                                <option value="Planning">Planning</option>
+                                <option value="In Progress" selected>In Progress</option>
+                                <option value="On Hold">On Hold</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="projectProgress">Progress (%)</label>
+                            <input type="number" id="projectProgress" min="0" max="100" value="0" placeholder="0-100">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectTeam">Team Members</label>
+                        <input type="text" id="projectTeam" placeholder="Enter names separated by commas (e.g., John, Sarah, Mike)">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Project</button>
+                </form>
+            </section>
+
+            <!-- Search & Filter Section -->
+            <section class="search-filter-section">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="🔍 Search projects..." class="search-input">
+                </div>
+                <div class="filter-controls">
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">All Status</option>
+                        <option value="Planning">Planning</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="On Hold">On Hold</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                    <select id="priorityFilter" class="filter-select">
+                        <option value="">All Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                    <select id="sortSelect" class="filter-select">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="duedate">Due Date</option>
+                        <option value="progress">Progress</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Projects Display Section -->
+            <section class="projects-section">
+                <h2>Projects <span id="projectCount">(0)</span></h2>
+                <div id="projectsContainer" class="projects-grid">
+                    <div class="empty-state">
+                        <p>No projects yet. Create one to get started!</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Project</h2>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editName">Project Name</label>
+                    <input type="text" id="editName" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDesc">Description</label>
+                    <textarea id="editDesc" rows="3"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                                 npm install               <label for="editDate">Start Date</label>
+                        <input type="date" id="editDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="editStatus">Status</label>
+                        <select id="editStatus">
+                            <option value="Planning">Planning</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="On Hold">On Hold</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
